@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { useMutation, withApollo} from 'react-apollo';
+import {withApollo} from 'react-apollo';
 import {Switch, Route} from 'react-router'
-import AccountEditing from "./components/AccountEditing.jsx";
+import ProcessList from "./components/ProcessList.jsx";
 import Authorization from "./components/Authorization.jsx";
-import {BrowserRouter as Router} from "react-router-dom";
+import EditAccount from "./components/EditAccount.jsx";
 
 
 import './styles/index.scss'
@@ -15,7 +15,8 @@ function App(props) {
     return(
             <Switch>
                 <Route exact path='/' component={Authorization} />
-                <Route path='/editing' component={AccountEditing}/>
+                <Route path='/process' component={ProcessList} />
+                <Route path='/editing' component={EditAccount} />
             </Switch>
     )
 }

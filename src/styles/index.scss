@@ -40,6 +40,8 @@
 }
 
 
+
+
 .bg_common_data {
   overflow: auto;
   width: 100%;
@@ -93,8 +95,15 @@
         box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
         ul {
           li {
-            margin-bottom: 20px;
+            svg {
+              margin-top: 60px;
+              margin-left: -30px;
+            }
             list-style-type: none;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 19px;
             &:hover {
               color: white;
               cursor: pointer;
@@ -121,6 +130,9 @@
     }
   }
 }
+
+
+
 
 .process_list {
   width: 95.5%;
@@ -230,6 +242,60 @@
           margin-top: 5px;
         }
       }
+    }
+  }
+}
+
+
+
+.block_description {
+  margin-top: 84px;
+  margin-left: 30px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 35px;
+  color: #404064;
+  width: 95.5%;
+  button {
+    width: 116px;
+    height: 36px;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    float: right;
+    margin-top: -40px;
+  }
+}
+
+
+.edit_account_block {
+  width: 95.5%;
+  height: 288px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-left: 30px;
+  margin-top: 20px;
+  form {
+    margin-left: 307px;
+    padding-top: 17px;
+    label {
+      float: left;
+      margin-left: -290px;
+      margin-top: -30px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+      color: #999999;
+    }
+
+    input {
+      width: 435px;
+      color: #6879BB;
     }
   }
 }

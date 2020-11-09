@@ -10,6 +10,15 @@ const processList = handleActions({
     null
 );
 
+const firstName = handleActions({
+    [actions.getFirstName](state, {payload: {firstName}}) {
+        return firstName
+    }
+},
+    ''
+);
+
 export default combineReducers({
-    processList
+    processList,
+    firstName
 })

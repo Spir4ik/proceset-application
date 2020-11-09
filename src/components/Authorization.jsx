@@ -21,7 +21,7 @@ function Authorization(props) {
 
     const [login] = useMutation(LoginMutation, {
         onCompleted(data) {
-            localforage.setItem('token', data.login.token).then(r => console.log(r))
+            localforage.setItem('token', data.login.token)
         }
     })
 
@@ -60,9 +60,11 @@ function Authorization(props) {
                                placeholder={'Введите пароль'}
                         />
                     </div>
+                    <Link to='/process'>
                         <button type="submit" disabled={!password || !email}
                                 className="btn btn-warning">Войти в систему
                         </button>
+                    </Link>
                     <div>
                         <a href="#">Зарегистрироваться</a>
                     </div>
