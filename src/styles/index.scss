@@ -299,3 +299,32 @@
     }
   }
 }
+
+
+
+.window_login {
+  .registration_text {
+    height: 25px;
+    width: 0;
+    h4 {
+
+    }
+  }
+  .registration {
+    form {
+      margin-top: 50px;
+      .footer_block_registration {
+        p {
+          padding-top: 0;
+          text-align: left;
+        }
+        a {
+          float: right;
+          margin-top: -40px;
+          margin-right: 112px;
+        }
+      }
+    }
+  }
+
+}

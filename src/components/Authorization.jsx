@@ -23,11 +23,7 @@ function Authorization(props) {
         onCompleted(data) {
             localforage.setItem('token', data.login.token)
         }
-    })
-
-    // var config = JSON.parse(localStorage.getItem('config'));
-    let a = JSON.parse(localStorage.getItem('token'));
-    console.log(a);
+    });
 
     return(
         <div className="bg_login_page">
@@ -35,13 +31,17 @@ function Authorization(props) {
             <div className="window_login">
                 <form  onSubmit={async e => {
                     e.preventDefault();
-                    await login({
-                        variables: {
-                            email: email,
-                            password: password,
-                        }
-                    });
-                    history.push('/editing');
+                    try {
+                        await login({
+                            variables: {
+                                email: email,
+                                password: password,
+                            }
+                        });
+                        history.push('/process');
+                    } catch (err) {
+                        alert(err)
+                    }
                 }}>
                     <div className="form-group">
                         <input type="email"
@@ -60,13 +60,13 @@ function Authorization(props) {
                                placeholder={'Введите пароль'}
                         />
                     </div>
-                    <Link to='/process'>
                         <button type="submit" disabled={!password || !email}
                                 className="btn btn-warning">Войти в систему
                         </button>
-                    </Link>
                     <div>
-                        <a href="#">Зарегистрироваться</a>
+                        <Link to='/registration'>
+                            <a href="#">Зарегистрироваться</a>
+                        </Link>
                     </div>
                 </form>
             </div>

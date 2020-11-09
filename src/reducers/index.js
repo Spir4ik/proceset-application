@@ -2,6 +2,16 @@ import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions'
 
+
+const token = handleActions({
+    [actions.getAccessToken](state, {payload: {token}}) {
+        return token
+    }
+},
+    ''
+);
+
+
 const processList = handleActions({
     [actions.getProcessList](state, {payload: {processList}}) {
        return processList
@@ -20,5 +30,6 @@ const firstName = handleActions({
 
 export default combineReducers({
     processList,
+    token,
     firstName
 })

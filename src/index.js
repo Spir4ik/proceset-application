@@ -10,6 +10,8 @@ import {Provider} from 'react-redux'
 import reducers from './reducers/index.js'
 import {createBrowserHistory} from "history";
 import {createStore} from "redux";
+import localforage from "localforage";
+
 
 
 const history = createBrowserHistory();
@@ -23,19 +25,21 @@ function createIsomorphLink() {
     })
 }
 
-const authLink = setContext((_, { headers }) => {
+const authLink =  setContext((_, { headers })  => {
 
-    // const token = localForage.getItem('token');
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzdmVuMi5jb29sQGdtYWlsLmNvbSIsImlhdCI6MTYwNDcxMjg2OSwiZXhwIjoxNjM2MjcwNDY5fQ.6TAB-OrRnJoTH_9XbSn1RlyzOhu_S5ZJdBk9h5tTUg0'
-    return {
-        headers: {
-            ...headers,
-            authorization: token ? `Bearer ${token}` : "",
+    async function getValue() {
+        let token = await localforage.getItem('token');
+        return {
+            headers: {
+                ...headers,
+                authorization: token ? `Bearer ${token}` : "",
+            }
         }
-    }
+    };
+
+    return getValue()
 });
 
-console.log(authLink);
 
 function createApolloClient(initialState = {}) {
     const ssrMode = typeof window === 'undefined'

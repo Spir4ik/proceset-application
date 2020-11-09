@@ -31,6 +31,7 @@ function ProcessList(props) {
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
 
+
     return (
         <div className="bg_common_data">
             <Sidebar />
