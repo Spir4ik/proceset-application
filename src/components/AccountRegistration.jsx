@@ -113,7 +113,7 @@ function AccountRegistration(props) {
                         </button>
                         <div className='footer_block_registration'>
                             <p>Уже зарегистрированы?</p>
-                            <a href="/">Вход</a>
+                            <a href="#/">Вход</a>
                         </div>
                     </form>
                 </div>

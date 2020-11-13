@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {ApolloProvider} from "react-apollo";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {HttpLink} from "apollo-link-http";
@@ -55,11 +55,11 @@ function createApolloClient(initialState = {}) {
 
 ReactDOM.render(
         <ApolloProvider client={createApolloClient()}>
-            <BrowserRouter history={history}>
+            <HashRouter history={history}>
                 <Provider store={store}>
                     <App/>
                 </Provider>
-            </BrowserRouter>
+            </HashRouter>
         </ApolloProvider>
     , document.getElementById('root')
 );

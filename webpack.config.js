@@ -119,9 +119,9 @@ module.exports = {
                 use: cssLoaders("sass-loader")
             },
             {
-                test: /\.jsx$/, // определяем тип файлов
-                exclude: /(node_modules)/,  // исключаем из обработки папку node_modules
-                loader: "babel-loader",   // определяем загрузчик
+                test: /\.jsx$/,
+                exclude: /(node_modules)/,
+                loader: "babel-loader",
                 options: {
                     presets: ['@babel/preset-env',
                         '@babel/react',{
