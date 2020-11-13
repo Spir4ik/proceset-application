@@ -370,17 +370,37 @@ template {
   border-radius: 2px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
+.bg_login_page .window_login form .block_error {
+  width: 129.4%;
+  height: 96px;
+  background-color: #FFE9DB;
+  margin-left: -48px;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  margin-top: 24px;
+}
+.bg_login_page .window_login form .block_error svg {
+  float: left;
+  margin-left: 48px;
+  margin-top: 23px;
+}
+.bg_login_page .window_login form .block_error p {
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+}
 .bg_login_page .window_login form button {
   width: 328px;
-  height: 45px;
+  height: 36px;
   margin-top: 12px;
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
   line-height: 16px;
-}
-.bg_login_page .window_login form div:last-of-type {
-  margin-top: 18px;
+  margin-bottom: 18px;
 }
 
 .bg_common_data {
