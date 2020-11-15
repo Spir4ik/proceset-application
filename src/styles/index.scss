@@ -89,6 +89,15 @@
         z-index: 3;
         top: 20px
       }
+      //ul {
+      //  margin-left: 20px;
+      //  a {
+      //    &:hover {
+      //      text-decoration: none;
+      //      color: #6879BB;
+      //    }
+      //  }
+      //}
       .default_aside {
         fill: #6879BB;
       }
@@ -119,6 +128,13 @@
         background: #404064;
         box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
         ul {
+          margin-left: 20px;
+          a {
+            width: 0;
+            &:hover {
+              text-decoration: none;
+            }
+          }
           li {
             svg {
               margin-top: 60px;
@@ -338,6 +354,59 @@
   .registration {
     form {
       margin-top: 50px;
+      .password-control {
+        //position: absolute;
+        //top: 40px;
+        //left: 480px;
+        cursor: pointer;
+        margin-top: -28px;
+        margin-right: 12px;
+        float: right;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+      }
+      .window {
+        position: absolute;
+        width: 0;
+        .pointer {
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-top: 5px solid transparent;
+          border-right: 10px solid white;
+          border-bottom: 5px solid transparent;
+          float: right;
+          margin-top: -23px;
+          margin-left: 345px;
+        }
+        .valid_password {
+          width: 320px;
+          height: 160px;
+          border-radius: 4px;
+          background-color: #FFFFFF;
+          margin-left: 355px;
+          margin-top: -95px;
+          box-shadow: -16px 0px 14px -9px rgba(0,0,0,0.75);
+          svg {
+            margin-right: 10px;
+          }
+
+          p {
+            color: #5F6E78;
+            //margin-top: 1px;
+            //margin-bottom: 1px;
+            margin-top: 5px;
+            margin-left: 30px;
+            padding-top: 0;
+            margin-bottom: 5px;
+            font-size: 14px;
+            line-height: 20px;
+            float: left;
+          }
+        }
+      }
       .footer_block_registration {
         p {
           padding-top: 0;
