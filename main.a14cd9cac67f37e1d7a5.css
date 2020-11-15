@@ -458,6 +458,15 @@ template {
   background: #404064;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
 }
+.bg_common_data aside .content_in_aside .show_full_aside ul {
+  margin-left: 20px;
+}
+.bg_common_data aside .content_in_aside .show_full_aside ul a {
+  width: 0;
+}
+.bg_common_data aside .content_in_aside .show_full_aside ul a:hover {
+  text-decoration: none;
+}
 .bg_common_data aside .content_in_aside .show_full_aside ul li {
   list-style-type: none;
   font-style: normal;
@@ -651,6 +660,53 @@ template {
 }
 .window_login .registration form {
   margin-top: 50px;
+}
+.window_login .registration form .password-control {
+  cursor: pointer;
+  margin-top: -28px;
+  margin-right: 12px;
+  float: right;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+.window_login .registration form .window {
+  position: absolute;
+  width: 0;
+}
+.window_login .registration form .window .pointer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-right: 10px solid white;
+  border-bottom: 5px solid transparent;
+  float: right;
+  margin-top: -23px;
+  margin-left: 345px;
+}
+.window_login .registration form .window .valid_password {
+  width: 320px;
+  height: 160px;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  margin-left: 355px;
+  margin-top: -95px;
+  box-shadow: -16px 0px 14px -9px rgba(0, 0, 0, 0.75);
+}
+.window_login .registration form .window .valid_password svg {
+  margin-right: 10px;
+}
+.window_login .registration form .window .valid_password p {
+  color: #5F6E78;
+  margin-top: 5px;
+  margin-left: 30px;
+  padding-top: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 20px;
+  float: left;
 }
 .window_login .registration form .footer_block_registration p {
   padding-top: 0;
