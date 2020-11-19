@@ -3,6 +3,12 @@ import {withApollo, useMutation} from "react-apollo";
 import localforage from "localforage";
 import {gql} from "apollo-boost";
 import LogoProceset from "../image/Vector.png";
+import eyeInvisible from '../assets/eye-invisible.svg'
+import iconConfirm from '../assets/icon-confirmation.svg'
+import iconInTheProcess from '../assets/icon-inTheProcess.svg'
+import questionCircle from '../assets/question-circle.svg'
+import vector from '../assets/Vector.svg'
+import {Link} from "react-router-dom";
 
 
 const registUser = gql`
@@ -53,7 +59,97 @@ function AccountRegistration(props) {
         } catch (err) {
             alert(err)
         }
+    };
 
+    const testFunc = () => {
+        if (password.length >= 8 &&
+            password.search(/[A-Z]/g) !== -1 &&
+            password.search(/[a-z]/i) !== -1 &&
+            password.search(/[0-9]/) !== -1 &&
+            password.search(/[!@#$%^&*]/) !== - 1) {
+            return(
+                <img src={vector} alt=""/>
+            )
+        }
+
+        return(
+            <img src={questionCircle} alt=""/>
+        )
+    };
+
+    const validPassword = () => {
+        if (password.length >= 8 &&
+            password.search(/[A-Z]/g) !== -1 &&
+            password.search(/[a-z]/i) !== -1 &&
+            password.search(/[0-9]/) !== -1 &&
+            password.search(/[!@#$%^&*]/) !== - 1) {
+            return(
+                <div className="window" style={{display: 'none'}}>
+                    <div className="pointer">
+                    </div>
+                    <div className='valid_password'>
+                        {password.length < 8 && <p><img src={iconInTheProcess} alt=""/>
+                            Содержит 8 символов</p>}
+                        {password.length >= 8 && <p><img src={iconConfirm} alt=""/>
+                            Содержит 8 символов</p>}
+
+                        {password.search(/[A-Z]/g) === -1 && <p><img src={iconInTheProcess} alt=""/>
+                            латинские строчные буквы (A–Z)</p>}
+                        {password.search(/[A-Z]/g) !== -1 && <p><img src={iconConfirm} alt=""/>
+                            латинские строчные буквы (A–Z)</p>}
+
+                        {password.search(/[a-z]/i) === -1 && <p><img src={iconInTheProcess} alt=""/>
+                            латинские строчные буквы (a–z)</p>}
+                        {password.search(/[a-z]/i) !== -1 && <p><img src={iconConfirm} alt=""/>
+                            латинские строчные буквы (a–z)</p>}
+
+                        {password.search(/[0-9]/) !== -1 && <p><img src={iconConfirm} alt=""/>
+                            цифры (0-9)</p>}
+                        {password.search(/[0-9]/) === -1 && <p><img src={iconInTheProcess} alt=""/>
+                            цифры (0-9)</p>}
+
+                        {password.search(/[!@#$%^&*]/) !== - 1 && <p><img src={iconConfirm} alt=""/>
+                            неалфавитные символы (!, $, #, % и т.д.)</p>}
+                        {password.search(/[!@#$%^&*]/) === - 1 && <p><img src={iconInTheProcess} alt=""/>
+                            неалфавитные символы (!, $, #, % и т.д.)</p>}
+                    </div>
+                </div>
+            )
+        }
+
+
+        return(
+            <div className="window" style={{display: 'display'}}>
+                <div className="pointer">
+                </div>
+                <div className='valid_password'>
+                    {password.length < 8 && <p><img src={iconInTheProcess} alt=""/>
+                        Содержит 8 символов</p>}
+                    {password.length >= 8 && <p><img src={iconConfirm} alt=""/>
+                        Содержит 8 символов</p>}
+
+                    {password.search(/[A-Z]/g) === -1 && <p><img src={iconInTheProcess} alt=""/>
+                        латинские строчные буквы (A–Z)</p>}
+                    {password.search(/[A-Z]/g) !== -1 && <p><img src={iconConfirm} alt=""/>
+                        латинские строчные буквы (A–Z)</p>}
+
+                    {password.search(/[a-z]/i) === -1 && <p><img src={iconInTheProcess} alt=""/>
+                        латинские строчные буквы (a–z)</p>}
+                    {password.search(/[a-z]/i) !== -1 && <p><img src={iconConfirm} alt=""/>
+                        латинские строчные буквы (a–z)</p>}
+
+                    {password.search(/[0-9]/) !== -1 && <p><img src={iconConfirm} alt=""/>
+                        цифры (0-9)</p>}
+                    {password.search(/[0-9]/) === -1 && <p><img src={iconInTheProcess} alt=""/>
+                        цифры (0-9)</p>}
+
+                    {password.search(/[!@#$%^&*]/) !== - 1 && <p><img src={iconConfirm} alt=""/>
+                        неалфавитные символы (!, $, #, % и т.д.)</p>}
+                    {password.search(/[!@#$%^&*]/) === - 1 && <p><img src={iconInTheProcess} alt=""/>
+                        неалфавитные символы (!, $, #, % и т.д.)</p>}
+                </div>
+            </div>
+        )
     };
 
     return(
@@ -101,51 +197,10 @@ function AccountRegistration(props) {
                                    value={password}
                                    placeholder={'Введите пароль'}
                             />
-                            <p className="password-control" onClick={() => setShowPassword(!showPassword)}> </p>
-                            {password && <div className="window">
-                                <div className="pointer">
+                            <p className="password-control">{testFunc()} </p>
+                            <p className="password-control first-icon" onClick={() => setShowPassword(!showPassword)}><img src={eyeInvisible} alt=""/> </p>
 
-                                </div>
-                                <div className='valid_password'>
-                                    {password.length < 8 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#CCDAE0"/>
-                                    </svg>
-                                        Содержит 8 символов</p>}
-                                    {password.length >= 8 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#4CAF50"/>
-                                    </svg>
-                                        Содержит 8 символов</p>}
-
-                                    {password.search(/[A-Z]/g) === -1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#CCDAE0"/>
-                                    </svg>латинские строчные буквы (A–Z)</p>}
-                                    {password.search(/[A-Z]/g) !== -1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#4CAF50"/>
-                                    </svg>латинские строчные буквы (A–Z)</p>}
-
-                                    {password.search(/[a-z]/i) === -1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#CCDAE0"/>
-                                    </svg>латинские строчные буквы (a–z)</p>}
-                                    {password.search(/[a-z]/i) !== -1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#4CAF50"/>
-                                    </svg>латинские строчные буквы (a–z)</p>}
-
-                                    {password.search(/[0-9]/) !== -1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#4CAF50"/>
-                                    </svg>цифры (0-9)</p>}
-                                    {password.search(/[0-9]/) === -1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#CCDAE0"/>
-                                    </svg>цифры (0-9)</p>}
-
-                                    {password.search(/[!@#$%^&*]/) !== - 1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#4CAF50"/>
-                                    </svg>неалфавитные символы (!, $, #, % и т.д.)</p>}
-                                    {password.search(/[!@#$%^&*]/) === - 1 && <p><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.2496 0.96875H12.1575C12.0043 0.96875 11.859 1.03906 11.7653 1.15937L5.32308 9.32031L2.23402 5.40625C2.18729 5.34692 2.12772 5.29895 2.0598 5.26593C1.99187 5.23292 1.91735 5.21572 1.84183 5.21562H0.749642C0.644955 5.21562 0.587142 5.33594 0.651205 5.41719L4.93089 10.8391C5.13089 11.0922 5.51527 11.0922 5.71683 10.8391L13.3481 1.16875C13.4121 1.08906 13.3543 0.96875 13.2496 0.96875Z" fill="#CCDAE0"/>
-                                    </svg>неалфавитные символы (!, $, #, % и т.д.)</p>}
-
-                                </div>
-                            </div>}
+                            {password && validPassword()}
                         </div>
                         <div className="form-group">
                             <input type={showPasswordTwo ? 'text' : 'password'}
@@ -155,7 +210,7 @@ function AccountRegistration(props) {
                                    value={passwordTwo}
                                    placeholder={'Повторите пароль'}
                             />
-                            <p className="password-control" onClick={() => setShowPasswordTwo(!showPasswordTwo)}> </p>
+                            <p className="password-control" onClick={() => setShowPasswordTwo(!showPasswordTwo)}><img src={eyeInvisible} alt=""/> </p>
                         </div>
                         <button type="submit" disabled={!password || !email ||
                                                         !firstName || !secondName ||
@@ -168,7 +223,7 @@ function AccountRegistration(props) {
                         </button>
                         <div className='footer_block_registration'>
                             <p>Уже зарегистрированы?</p>
-                            <a href="#/">Вход</a>
+                            <Link to="/"><a href="/">Вход</a></Link>
                         </div>
                     </form>
                 </div>
