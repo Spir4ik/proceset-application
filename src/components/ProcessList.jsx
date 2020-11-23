@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {withApollo, useQuery} from "react-apollo";
-import { useSelector, useDispatch } from 'react-redux';
 import {gql} from "@apollo/client";
 import CardProgress from "./CardProgress.jsx";
 import Sidebar from "./Sidebar.jsx";
+
 
 const TEST = gql`
     query {
@@ -23,19 +23,42 @@ const TEST = gql`
 `;
 
 function ProcessList(props) {
-    const {client} = props;
-    const dispatch = useDispatch();
+
+    const {client, history} = props;
+    useEffect(() => {
+        console.log(history)
+    });
+
     const {loading, error, data} = useQuery(TEST);
-    const test = useSelector(state => state.processList);
 
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
 
+    const myFucTest = () => {
+        addEventListener("popstate",function(e){
+            window.location.reload()
+        });
+    };
+
+    myFucTest();
 
     return (
         <div className="bg_common_data">
             <Sidebar />
-            <CardProgress data={data.processList.slice(0,3)}/>
+            {data.processList.map(({name, numberOfExecutions, averageLeadTime,
+                averageActiveTime, employeesInvolvedProcess,
+                numberOfScenarios, start, end, loading, id}) => {
+                return(
+                    <CardProgress name={name} numberOfExecutions={numberOfExecutions}
+                                  averageLeadTime={averageLeadTime}
+                                  averageActiveTime={averageActiveTime}
+                                  employeesInvolvedProcess={employeesInvolvedProcess}
+                                  numberOfScenarios={numberOfScenarios}
+                                  start={start} end={end} loading={loading}
+                                  key={id}
+                    />
+                )
+            })}
         </div>
     );
 }

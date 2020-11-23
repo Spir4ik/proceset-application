@@ -16,7 +16,7 @@ import localforage from "localforage";
 
 const history = createBrowserHistory();
 
-const store = createStore(reducers)
+const store = createStore(reducers);
 
 function createIsomorphLink() {
     return new HttpLink({
@@ -42,8 +42,8 @@ const authLink =  setContext((_, { headers })  => {
 
 
 function createApolloClient(initialState = {}) {
-    const ssrMode = typeof window === 'undefined'
-    const cache = new InMemoryCache().restore(initialState)
+    const ssrMode = typeof window === 'undefined';
+    const cache = new InMemoryCache().restore(initialState);
 
     return new ApolloClient({
         ssrMode,
